@@ -1,0 +1,25 @@
+.Directory {
+    width: 20%;
+    background-color: rgb(170, 159, 159);
+    position: absolute;
+    height:100%;
+    border-right-color:black;
+    border-right-width: 25px;
+}
+
+.file-add input {
+    display: none;
+}
+
+.file-add-image {
+    height: 20%;
+    width: 20%;
+    margin-left: 1%;
+    margin-bottom: 1%;
+}
+
+.Directory label {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
