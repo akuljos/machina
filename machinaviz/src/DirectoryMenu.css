@@ -1,11 +1,10 @@
-.Directory {
-    width: 15%;
+/* .DirectoryMenu {
+    width: 20%;
     background-color: rgb(170, 159, 159);
     position: absolute;
     height:100%;
-    border-right-color:black;
-    border-right-width: 25px;
-}
+    border-right: 2px solid black;
+} */
 
 .file-add input {
     display: none;
@@ -18,7 +17,7 @@
     margin-bottom: 1%;
 }
 
-.Directory label {
+.DirectoryMenu label {
     position: absolute;
     left: 0;
     bottom: 0;
