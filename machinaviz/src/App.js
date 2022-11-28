@@ -8,9 +8,9 @@ function App() {
       <header className="App-header">
         MACHINA Visualizer
       </header>
-      <body>
+      <div>
         <Directory />
-      </body>
+      </div>
     </div>
   );
 }
