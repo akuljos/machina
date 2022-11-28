@@ -1,7 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 
-const DIRECTORY_CONTAINER = "../data/";
+const DIRECTORY_CONTAINER = "../result/";
 
 const PORT = process.env.PORT || 3001;
 

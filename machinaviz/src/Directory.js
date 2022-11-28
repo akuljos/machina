@@ -15,7 +15,7 @@ function Directory() {
     return (
         <div className="Directory">
             { data.map((filename) => (
-                <DirectoryItem name={filename} />
+                <DirectoryItem name={filename} key={filename} />
             )) }
             <label className="file-add" >
                 <input type="file" alt="file" />
