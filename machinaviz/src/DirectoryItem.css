@@ -1,4 +1,4 @@
-.DictionaryItem-panel {
+.DirectoryItem-panel {
     background-color: white;
     width: 90%;
     margin-left: 5%;
@@ -7,7 +7,7 @@
     margin-top: 5%;
 }
 
-.DictionaryItem-panel-clicked {
+.DirectoryItem-panel-clicked {
     background-color: black;
     width: 90%;
     margin-left: 5%;
@@ -16,12 +16,12 @@
     margin-top: 5%;
 }
 
-.DictionaryItem-ident {
+.DirectoryItem-ident {
     margin-left: 5%;
     color: black;
 }
 
-.DictionaryItem-ident-clicked {
+.DirectoryItem-ident-clicked {
     margin-left: 5%;
     color: white;
 }
