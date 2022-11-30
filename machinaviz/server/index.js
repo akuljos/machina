@@ -2,6 +2,7 @@ const express = require('express');
 const fs = require('fs');
 
 const DIRECTORY_CONTAINER = "../result/";
+const PATIENT_CONTAINER = "../patient_lists/";
 
 const PORT = process.env.PORT || 3001;
 
@@ -16,6 +17,15 @@ app.get("/extract-dir-names", (req, res) => {
     });
     res.json({ message: fileArr });
 });
+
+app.get("/extract-file-names", (req, res) => {
+    var name = req.query.name;
+    let patientArr = [];
+    if (name !== "") {
+        patientArr = fs.readFileSync(PATIENT_CONTAINER + name + ".csv", 'utf-8').split(",");
+    }
+    res.json({ message: patientArr });
+})
 
 app.listen(PORT, () => {
     console.log(`server listening on ${PORT}`);

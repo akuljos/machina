@@ -1,8 +1,15 @@
 import './App.css';
-import React from 'react';
+import React, { useState } from 'react';
 import DirectoryMenu from './DirectoryMenu.js';
+import PatientMenu from './PatientMenu.js';
 
 function App() {
+  const [subdirectory, setSubdirectory] = useState("");
+
+  function handleSubdirSelect(directoryName) {
+    setSubdirectory(directoryName);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -10,10 +17,10 @@ function App() {
       </header>
       <div className="container"> 
           <div className="box-cell directory-box" >
-              <DirectoryMenu />
+              <DirectoryMenu handleSubdirSelect={handleSubdirSelect} />
           </div>
           <div className="box-cell patient-box" >
-              <DirectoryMenu />
+              <PatientMenu subdirectory={subdirectory} />
           </div>
         </div> 
     </div>

@@ -5,8 +5,8 @@ var directory_clickable = true;
 
 function DirectoryItem(props) {
 
-    var panelId = 'panel-' + props.name;
-    var identId = 'ident-' + props.name;
+    var panelId = 'directory-panel-' + props.name;
+    var identId = 'directory-ident-' + props.name;
 
     function onPanelClicked() {
         var curr_class = document.getElementById(panelId).getAttribute('class');
@@ -15,10 +15,12 @@ function DirectoryItem(props) {
             document.getElementById(panelId).setAttribute('class', 'DirectoryItem-panel-clicked');
             document.getElementById(identId).setAttribute('class', 'DirectoryItem-ident-clicked');
             directory_clickable = false;
+            props.handleSubdirSelect(props.name);
         } else if (curr_class === 'DirectoryItem-panel-clicked') {
             document.getElementById(panelId).setAttribute('class', 'DirectoryItem-panel');
             document.getElementById(identId).setAttribute('class', 'DirectoryItem-ident');
             directory_clickable = true;
+            props.handleSubdirSelect("");
         }
     }
 
