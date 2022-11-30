@@ -1,0 +1,12 @@
+cluster_4 primary
+cluster_4_locoregional_2 locoregional_2
+cluster_4_primary primary
+cluster_5 primary
+cluster_5_locoregional_1 locoregional_1
+cluster_5_primary primary
+cluster_3 primary
+cluster_3_lymph_node lymph_node
+cluster_1 primary
+cluster_1_locoregional_2 locoregional_2
+cluster_2 primary
+cluster_2_locoregional_1 locoregional_1

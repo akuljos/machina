@@ -1,0 +1,59 @@
+
+Gurobi 9.0.3 (mac64, C++) logging started Wed Nov 30 12:28:59 2022
+
+Academic license - for non-commercial use only
+Warning: Gurobi version mismatch between C++ 9.0.2 and C library 9.0.3
+Gurobi Optimizer version 9.0.3 build v9.0.3rc0 (mac64)
+Optimize a model with 128705 rows, 39176 columns and 351098 nonzeros
+Model fingerprint: 0xd2995160
+Variable types: 0 continuous, 39176 integer (39176 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [2e-03, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+
+Warning: Completing partial solution with 39016 unfixed non-continuous variables out of 39176
+User MIP start produced solution with objective 27.1111 (0.12s)
+Loaded user MIP start with objective 27.1111
+
+Presolve removed 105792 rows and 34371 columns
+Presolve time: 4.13s
+Presolved: 22913 rows, 4805 columns, 68624 nonzeros
+Variable types: 0 continuous, 4805 integer (4805 binary)
+
+Root relaxation: objective 1.811111e+01, 2274 iterations, 0.12 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0   18.11111    0   84   27.11111   18.11111  33.2%     -    4s
+     0     0   20.30208    0  161   27.11111   20.30208  25.1%     -    5s
+     0     0   20.30208    0  115   27.11111   20.30208  25.1%     -    6s
+     0     0   22.61285    0  201   27.11111   22.61285  16.6%     -    7s
+     0     0   25.41921    0  485   27.11111   25.41921  6.24%     -    8s
+     0     0   25.44994    0  413   27.11111   25.44994  6.13%     -    8s
+     0     0   25.44994    0  285   27.11111   25.44994  6.13%     -    8s
+     0     0   25.92813    0  572   27.11111   25.92813  4.36%     -    9s
+     0     0   25.95269    0  406   27.11111   25.95269  4.27%     -    9s
+     0     0   25.98656    0  462   27.11111   25.98656  4.15%     -    9s
+     0     0   25.98693    0  458   27.11111   25.98693  4.15%     -    9s
+     0     0   26.61386    0  319   27.11111   26.61386  1.83%     -   10s
+     0     0   26.61386    0   48   27.11111   26.61386  1.83%     -   11s
+     0     0 infeasible    0        27.11111   27.11111  0.00%     -   11s
+
+Cutting planes:
+  Gomory: 8
+  Implied bound: 3
+  MIR: 10
+  StrongCG: 1
+  Zero half: 6
+  RLT: 3
+
+Explored 1 nodes (29748 simplex iterations) in 11.32 seconds
+Thread count was 4 (of 8 available processors)
+
+Solution count 1: 27.1111 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 2.711111111111e+01, best bound 2.711111111111e+01, gap 0.0000%

@@ -1,0 +1,12 @@
+Academic license - for non-commercial use only
+Warning: Gurobi version mismatch between C++ 9.0.2 and C library 9.0.3
+prostate-	(PS)	8	4	1	pPS	8166.67	8166.67	0.157082
+Academic license - for non-commercial use only
+Warning: Gurobi version mismatch between C++ 9.0.2 and C library 9.0.3
+prostate-	(PS, S)	8	4	1	pPS	8166.67	8166.67	0.189101
+Academic license - for non-commercial use only
+Warning: Gurobi version mismatch between C++ 9.0.2 and C library 9.0.3
+prostate-	(PS, S, M)	7	5	2	pM	7213.33	7213.33	0.206918
+Academic license - for non-commercial use only
+Warning: Gurobi version mismatch between C++ 9.0.2 and C library 9.0.3
+prostate-	(PS, S, M, R)	7	5	2	pM	7213.33	7213.33	1.47124

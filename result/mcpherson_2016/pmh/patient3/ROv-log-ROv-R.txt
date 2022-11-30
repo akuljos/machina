@@ -1,0 +1,56 @@
+
+Gurobi 9.0.3 (mac64, C++) logging started Wed Nov 30 12:29:14 2022
+
+Academic license - for non-commercial use only
+Warning: Gurobi version mismatch between C++ 9.0.2 and C library 9.0.3
+Gurobi Optimizer version 9.0.3 build v9.0.3rc0 (mac64)
+Optimize a model with 128697 rows, 39176 columns and 351079 nonzeros
+Model fingerprint: 0x08cfdd66
+Variable types: 0 continuous, 39176 integer (39176 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [2e-03, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+
+Warning: Completing partial solution with 39016 unfixed non-continuous variables out of 39176
+User MIP start produced solution with objective 27.1111 (0.12s)
+Loaded user MIP start with objective 27.1111
+
+Presolve removed 107622 rows and 34451 columns
+Presolve time: 3.89s
+Presolved: 21075 rows, 4725 columns, 62362 nonzeros
+Variable types: 0 continuous, 4725 integer (4725 binary)
+
+Root relaxation: objective 1.711111e+01, 1457 iterations, 0.08 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0   17.11111    0   93   27.11111   17.11111  36.9%     -    4s
+     0     0   19.19444    0  173   27.11111   19.19444  29.2%     -    5s
+     0     0   24.76176    0  496   27.11111   24.76176  8.67%     -    6s
+     0     0   24.99436    0  357   27.11111   24.99436  7.81%     -    6s
+     0     0   25.01519    0  406   27.11111   25.01519  7.73%     -    6s
+     0     0   25.01575    0  413   27.11111   25.01575  7.73%     -    6s
+     0     0   26.11140    0  157   27.11111   26.11140  3.69%     -    7s
+     0     0   26.11169    0  143   27.11111   26.11169  3.69%     -    7s
+     0     0     cutoff    0        27.11111   27.11111  0.00%     -    7s
+
+Cutting planes:
+  Gomory: 16
+  Implied bound: 64
+  Clique: 13
+  MIR: 10
+  Flow cover: 2
+  Zero half: 77
+  RLT: 257
+  BQP: 3
+
+Explored 1 nodes (12482 simplex iterations) in 7.71 seconds
+Thread count was 4 (of 8 available processors)
+
+Solution count 1: 27.1111 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 2.711111111111e+01, best bound 2.711111111111e+01, gap 0.0000%

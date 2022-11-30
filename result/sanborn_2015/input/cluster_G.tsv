@@ -1,0 +1,13 @@
+3 #anatomical sites
+3 #samples
+3 #characters
+#sample_index	sample_label	anatomical_site_index	anatomical_site_label	character_index	character_label	f-	f+
+0	primary	0	primary	0	cluster_1	0	0
+0	primary	0	primary	1	cluster_2	0	0
+0	primary	0	primary	2	cluster_3	0.584171	0.622133
+1	lung	1	lung	0	cluster_1	0.386287	0.855436
+1	lung	1	lung	1	cluster_2	0	0
+1	lung	1	lung	2	cluster_3	0.595151	0.639765
+2	locoregional	2	locoregional	0	cluster_1	0	0
+2	locoregional	2	locoregional	1	cluster_2	0.836115	1
+2	locoregional	2	locoregional	2	cluster_3	0.898956	0.93615

@@ -1,0 +1,35 @@
+Clone tree has 8 anatomical sites
+Found 4 maximum parsimony labelings with primary 'LOv'
+Found 1 labelings with 7 comigrations, 1 seeding sites and pPS
+Found 3 labelings with 9 comigrations, 2 seeding sites and pM
+Labeling 0: 27 migrations, 9 comigrations, 2 seeding sites and pM
+Labeling 1: 27 migrations, 9 comigrations, 2 seeding sites and pM
+Labeling 2: 27 migrations, 9 comigrations, 2 seeding sites and pM
+Labeling 3: 27 migrations, 7 comigrations, 1 seeding sites and pPS
+Found 20 maximum parsimony labelings with primary 'ROv'
+Found 1 labelings with 7 comigrations, 1 seeding sites and pPS
+Found 3 labelings with 9 comigrations, 2 seeding sites and pM
+Found 4 labelings with 10 comigrations, 2 seeding sites and pM
+Found 1 labelings with 12 comigrations, 2 seeding sites and pM
+Found 11 labelings with 12 comigrations, 3 seeding sites and pM
+Labeling 0: 27 migrations, 12 comigrations, 2 seeding sites and pM
+Labeling 1: 27 migrations, 12 comigrations, 3 seeding sites and pM
+Labeling 2: 27 migrations, 12 comigrations, 3 seeding sites and pM
+Labeling 3: 27 migrations, 12 comigrations, 3 seeding sites and pM
+Labeling 4: 27 migrations, 9 comigrations, 2 seeding sites and pM
+Labeling 5: 27 migrations, 12 comigrations, 3 seeding sites and pM
+Labeling 6: 27 migrations, 12 comigrations, 3 seeding sites and pM
+Labeling 7: 27 migrations, 12 comigrations, 3 seeding sites and pM
+Labeling 8: 27 migrations, 12 comigrations, 3 seeding sites and pM
+Labeling 9: 27 migrations, 9 comigrations, 2 seeding sites and pM
+Labeling 10: 27 migrations, 12 comigrations, 3 seeding sites and pM
+Labeling 11: 27 migrations, 12 comigrations, 3 seeding sites and pM
+Labeling 12: 27 migrations, 12 comigrations, 3 seeding sites and pM
+Labeling 13: 27 migrations, 12 comigrations, 3 seeding sites and pM
+Labeling 14: 27 migrations, 9 comigrations, 2 seeding sites and pM
+Labeling 15: 27 migrations, 10 comigrations, 2 seeding sites and pM
+Labeling 16: 27 migrations, 10 comigrations, 2 seeding sites and pM
+Labeling 17: 27 migrations, 10 comigrations, 2 seeding sites and pM
+Labeling 18: 27 migrations, 10 comigrations, 2 seeding sites and pM
+Labeling 19: 27 migrations, 7 comigrations, 1 seeding sites and pPS
+Warning: primary anatomical site 'RUt' missing in leaf labeling. Skipping.

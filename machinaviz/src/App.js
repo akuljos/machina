@@ -1,5 +1,6 @@
 import './App.css';
 import React, { useState } from 'react';
+import MigrationS from './MigrationS';
 import DirectoryMenu from './DirectoryMenu.js';
 import PatientMenu from './PatientMenu.js';
 
@@ -22,6 +23,7 @@ function App() {
           <div className="box-cell patient-box" >
               <PatientMenu subdirectory={subdirectory} />
           </div>
+          <MigrationS></MigrationS>
         </div> 
     </div>
   );

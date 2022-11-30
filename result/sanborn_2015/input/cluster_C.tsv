@@ -1,0 +1,19 @@
+3 #anatomical sites
+3 #samples
+5 #characters
+#sample_index	sample_label	anatomical_site_index	anatomical_site_label	character_index	character_label	f-	f+
+0	primary	0	primary	0	cluster_1	0	0
+0	primary	0	primary	1	cluster_2	0	0
+0	primary	0	primary	2	cluster_3	0.236718	0.286039
+0	primary	0	primary	3	cluster_4	0.0238521	0.0448708
+0	primary	0	primary	4	cluster_5	0.460289	0.468197
+1	locoregional_1	1	locoregional_1	0	cluster_1	0	0
+1	locoregional_1	1	locoregional_1	1	cluster_2	0.728017	0.87001
+1	locoregional_1	1	locoregional_1	2	cluster_3	0	0
+1	locoregional_1	1	locoregional_1	3	cluster_4	0	0
+1	locoregional_1	1	locoregional_1	4	cluster_5	0.79823	0.807808
+2	locoregional_2	2	locoregional_2	0	cluster_1	0.3141	0.377098
+2	locoregional_2	2	locoregional_2	1	cluster_2	0	0
+2	locoregional_2	2	locoregional_2	2	cluster_3	0	0
+2	locoregional_2	2	locoregional_2	3	cluster_4	0.328782	0.387969
+2	locoregional_2	2	locoregional_2	4	cluster_5	0.468187	0.475858

@@ -1,0 +1,12 @@
+cluster_5 primary
+cluster_5_primary primary
+cluster_4 primary
+cluster_4_primary primary
+cluster_3 primary
+cluster_3^distant distant
+cluster_3_distant distant
+cluster_3_lymph_node lymph_node
+cluster_2 distant
+cluster_2_distant distant
+cluster_1 primary
+cluster_1_locoregional locoregional

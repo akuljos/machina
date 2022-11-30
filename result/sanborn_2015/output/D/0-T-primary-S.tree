@@ -1,0 +1,5 @@
+cluster_2 cluster_2_primary
+cluster_2 cluster_1
+cluster_1 cluster_1_locoregional_2
+cluster_1 cluster_1_locoregional_1
+cluster_1 cluster_1_lymph_node

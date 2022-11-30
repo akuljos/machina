@@ -1,0 +1,24 @@
+digraph T {
+	{
+		rank=same
+		9 [penwidth=3,colorscheme=set19,color=3,label="D1\nROv"]
+		8 [penwidth=3,colorscheme=set19,color=3,label="C1\nROv"]
+		7 [penwidth=3,colorscheme=set19,color=3,label="A2\nROv"]
+		6 [penwidth=3,colorscheme=set19,color=8,label="A1\nOm"]
+		5 [penwidth=3,colorscheme=set19,color=3,label="F1\nROv"]
+		1 [penwidth=3,colorscheme=set19,color=8,label="B1\nOm"]
+	}
+	4 [penwidth=3,colorscheme=set19,color=3,label="E"]
+	3 [penwidth=3,colorscheme=set19,color=3,label="D"]
+	2 [penwidth=3,colorscheme=set19,color=3,label="C"]
+	0 [penwidth=3,colorscheme=set19,color=3,label="A"]
+	4 -> 5 [penwidth=3,colorscheme=set19,color=3]
+	3 -> 9 [penwidth=3,colorscheme=set19,color=3]
+	2 -> 8 [penwidth=3,colorscheme=set19,color=3]
+	2 -> 4 [penwidth=3,colorscheme=set19,color=3]
+	2 -> 3 [penwidth=3,colorscheme=set19,color=3]
+	0 -> 7 [penwidth=3,colorscheme=set19,color=3]
+	0 -> 6 [penwidth=3,colorscheme=set19,color="3;0.5:8"]
+	0 -> 2 [penwidth=3,colorscheme=set19,color=3]
+	0 -> 1 [penwidth=3,colorscheme=set19,color="3;0.5:8"]
+}

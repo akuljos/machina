@@ -1,0 +1,32 @@
+digraph T {
+	{
+		rank=same
+		11 [width=0.2,height=0.2,penwidth=3,colorscheme=set19,color=3,label="43.6%"]
+		9 [width=0.2,height=0.2,penwidth=3,colorscheme=set19,color=3,label="19.4%"]
+		5 [width=0.2,height=0.2,penwidth=3,colorscheme=set19,color=8,label="31.3%"]
+		4 [width=0.2,height=0.2,penwidth=3,colorscheme=set19,color=2,label="52.5%"]
+		2 [width=0.2,height=0.2,penwidth=3,colorscheme=set19,color=8,label="21.1%"]
+		0 [width=0.2,height=0.2,penwidth=3,colorscheme=set19,color=5,label="36.2%"]
+	}
+	12 [width=0.2,height=0.2,penwidth=3,colorscheme=set19,color=3,label=""]
+	10 [width=0.2,height=0.2,penwidth=3,colorscheme=set19,color=3,label=""]
+	8 [width=0.2,height=0.2,penwidth=3,colorscheme=set19,color=3,label=""]
+	7 [width=0.2,height=0.2,penwidth=3,colorscheme=set19,color=8,label=""]
+	6 [width=0.2,height=0.2,penwidth=3,colorscheme=set19,color=2,label=""]
+	3 [width=0.2,height=0.2,penwidth=3,colorscheme=set19,color=8,label=""]
+	1 [width=0.2,height=0.2,penwidth=3,colorscheme=set19,color=5,label=""]
+	inv [style="invis"]
+	inv -> 12[penwidth=3,colorscheme=set19,color=3,label="cluster_5",fontsize=18]
+	12 -> 11 [fontsize=18,penwidth=3,colorscheme=set19,color=3,label="cluster_5_primary"]
+	12 -> 10 [fontsize=18,penwidth=3,colorscheme=set19,color=3,label="cluster_4"]
+	12 -> 8 [fontsize=18,penwidth=3,colorscheme=set19,color=3,label="cluster_3"]
+	12 -> 1 [fontsize=18,penwidth=3,colorscheme=set19,color="3;0.5:5",label="cluster_1"]
+	10 -> 9 [fontsize=18,penwidth=3,colorscheme=set19,color=3,label="cluster_4_primary"]
+	8 -> 7 [fontsize=18,penwidth=3,colorscheme=set19,color="3;0.5:8",label="cluster_3^distant"]
+	8 -> 6 [fontsize=18,penwidth=3,colorscheme=set19,color="3;0.5:2",label="cluster_3^lymph_node"]
+	7 -> 5 [fontsize=18,penwidth=3,colorscheme=set19,color=8,label="cluster_3_distant"]
+	7 -> 3 [fontsize=18,penwidth=3,colorscheme=set19,color=8,label="cluster_2"]
+	6 -> 4 [fontsize=18,penwidth=3,colorscheme=set19,color=2,label="cluster_3_lymph_node"]
+	3 -> 2 [fontsize=18,penwidth=3,colorscheme=set19,color=8,label="cluster_2_distant"]
+	1 -> 0 [fontsize=18,penwidth=3,colorscheme=set19,color=5,label="cluster_1_locoregional"]
+}

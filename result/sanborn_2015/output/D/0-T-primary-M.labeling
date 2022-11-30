@@ -1,0 +1,6 @@
+cluster_2 primary
+cluster_2_primary primary
+cluster_1 primary
+cluster_1_locoregional_2 locoregional_2
+cluster_1_locoregional_1 locoregional_1
+cluster_1_lymph_node lymph_node

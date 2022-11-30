@@ -1,0 +1,12 @@
+Academic license - for non-commercial use only
+Warning: Gurobi version mismatch between C++ 9.0.2 and C library 9.0.3
+LOv-	(PS)	27	7	1	pPS	27.1111	27.1111	0.315742
+Academic license - for non-commercial use only
+Warning: Gurobi version mismatch between C++ 9.0.2 and C library 9.0.3
+LOv-	(PS, S)	27	7	1	pPS	27.1111	27.1111	0.328536
+Academic license - for non-commercial use only
+Warning: Gurobi version mismatch between C++ 9.0.2 and C library 9.0.3
+LOv-	(PS, S, M)	27	7	1	pPS	27.1111	27.1111	0.421904
+Academic license - for non-commercial use only
+Warning: Gurobi version mismatch between C++ 9.0.2 and C library 9.0.3
+LOv-	(PS, S, M, R)	27	7	1	pPS	27.1111	27.1111	11.3185

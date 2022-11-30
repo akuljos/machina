@@ -1,0 +1,38 @@
+
+Gurobi 9.0.3 (mac64, C++) logging started Wed Nov 30 12:28:58 2022
+
+Academic license - for non-commercial use only
+Warning: Gurobi version mismatch between C++ 9.0.2 and C library 9.0.3
+Gurobi Optimizer version 9.0.3 build v9.0.3rc0 (mac64)
+Optimize a model with 136405 rows, 39176 columns and 366498 nonzeros
+Model fingerprint: 0x1ad6875a
+Variable types: 0 continuous, 39176 integer (39176 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [2e-03, 1e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+
+Warning: Completing partial solution with 39016 unfixed non-continuous variables out of 39176
+User MIP start produced solution with objective 27.1111 (0.13s)
+Loaded user MIP start with objective 27.1111
+
+Presolve removed 136070 rows and 38937 columns
+Presolve time: 0.27s
+Presolved: 335 rows, 239 columns, 1341 nonzeros
+Variable types: 0 continuous, 239 integer (239 binary)
+
+Root relaxation: cutoff, 112 iterations, 0.00 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0     cutoff    0        27.11111   27.11111  0.00%     -    0s
+
+Explored 0 nodes (112 simplex iterations) in 0.42 seconds
+Thread count was 4 (of 8 available processors)
+
+Solution count 1: 27.1111 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 2.711111111111e+01, best bound 2.711111111111e+01, gap 0.0000%

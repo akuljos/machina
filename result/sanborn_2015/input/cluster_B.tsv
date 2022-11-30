@@ -1,0 +1,24 @@
+4 #anatomical sites
+4 #samples
+5 #characters
+#sample_index	sample_label	anatomical_site_index	anatomical_site_label	character_index	character_label	f-	f+
+0	primary	0	primary	0	cluster_1	0	0
+0	primary	0	primary	1	cluster_2	0	0
+0	primary	0	primary	2	cluster_3	0	0
+0	primary	0	primary	3	cluster_4	0.800052	0.849652
+0	primary	0	primary	4	cluster_5	0.109636	0.298284
+1	lymph_node	1	lymph_node	0	cluster_1	0	0
+1	lymph_node	1	lymph_node	1	cluster_2	0	0
+1	lymph_node	1	lymph_node	2	cluster_3	0.144588	0.274092
+1	lymph_node	1	lymph_node	3	cluster_4	0.19229	0.225801
+1	lymph_node	1	lymph_node	4	cluster_5	0.137984	0.366075
+2	locoregional_1	2	locoregional_1	0	cluster_1	0	0
+2	locoregional_1	2	locoregional_1	1	cluster_2	0.331029	0.540845
+2	locoregional_1	2	locoregional_1	2	cluster_3	0	0
+2	locoregional_1	2	locoregional_1	3	cluster_4	0.81021	0.86934
+2	locoregional_1	2	locoregional_1	4	cluster_5	0.203274	0.440759
+3	locoregional_2	3	locoregional_2	0	cluster_1	0.306558	0.717833
+3	locoregional_2	3	locoregional_2	1	cluster_2	0	0
+3	locoregional_2	3	locoregional_2	2	cluster_3	0	0
+3	locoregional_2	3	locoregional_2	3	cluster_4	0.456809	0.498397
+3	locoregional_2	3	locoregional_2	4	cluster_5	0.173337	0.35918

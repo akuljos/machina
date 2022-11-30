@@ -1,0 +1,10 @@
+cluster_4 primary
+cluster_3 primary
+cluster_3^locoregional_1 locoregional_1
+cluster_3_locoregional_1 locoregional_1
+cluster_3_primary primary
+cluster_1 locoregional_1
+cluster_1_locoregional_1 locoregional_1
+cluster_2 primary
+cluster_2_locoregional_2 locoregional_2
+cluster_2_parotid_gland parotid_gland

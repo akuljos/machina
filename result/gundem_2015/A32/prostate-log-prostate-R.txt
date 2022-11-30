@@ -1,0 +1,53 @@
+
+Gurobi 9.0.3 (mac64, C++) logging started Wed Nov 30 13:02:32 2022
+
+Academic license - for non-commercial use only
+Warning: Gurobi version mismatch between C++ 9.0.2 and C library 9.0.3
+Gurobi Optimizer version 9.0.3 build v9.0.3rc0 (mac64)
+Optimize a model with 55764 rows, 16906 columns and 157024 nonzeros
+Model fingerprint: 0x1bcdadda
+Variable types: 0 continuous, 16906 integer (16906 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [7e+00, 1e+03]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 3e+00]
+
+Warning: Completing partial solution with 16719 unfixed non-continuous variables out of 16906
+User MIP start produced solution with objective 11166.7 (0.06s)
+Loaded user MIP start with objective 11166.7
+
+Presolve removed 50507 rows and 15376 columns
+Presolve time: 1.04s
+Presolved: 5257 rows, 1530 columns, 15269 nonzeros
+Variable types: 0 continuous, 1530 integer (1530 binary)
+
+Root relaxation: objective 6.166667e+03, 602 iterations, 0.03 seconds
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 6166.66667    0   45 11166.6667 6166.66667  44.8%     -    1s
+H    0     0                    8213.3333333 6166.66667  24.9%     -    1s
+H    0     0                    7213.3333333 6166.66667  14.5%     -    1s
+     0     0 7170.00000    0   42 7213.33333 7170.00000  0.60%     -    1s
+     0     0 7170.00000    0   43 7213.33333 7170.00000  0.60%     -    1s
+     0     0 7177.33333    0  117 7213.33333 7177.33333  0.50%     -    1s
+
+Cutting planes:
+  Gomory: 5
+  Implied bound: 38
+  Clique: 59
+  MIR: 6
+  Zero half: 4
+  RLT: 7
+
+Explored 1 nodes (2688 simplex iterations) in 1.47 seconds
+Thread count was 8 (of 8 available processors)
+
+Solution count 3: 7213.33 8213.33 11166.7 
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 7.213333333333e+03, best bound 7.213333333333e+03, gap 0.0000%
+
+User-callback calls 323, time in user-callback 0.00 sec
