@@ -44,3 +44,10 @@
   height:100%;
   padding: 1%;
 }
+
+.container .box-cell.tree-box {
+  position: absolute;
+  left: 40%;
+  width: 60%;
+  height:100%;
+}

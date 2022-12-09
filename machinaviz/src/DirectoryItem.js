@@ -1,5 +1,6 @@
 import React from 'react';
 import './DirectoryItem.css';
+import { setPatientClickable } from './PatientItem';
 
 var directory_clickable = true;
 
@@ -20,6 +21,8 @@ function DirectoryItem(props) {
             document.getElementById(panelId).setAttribute('class', 'DirectoryItem-panel');
             document.getElementById(identId).setAttribute('class', 'DirectoryItem-ident');
             directory_clickable = true;
+            setPatientClickable(true);
+            props.handlePatientSelect("");
             props.handleSubdirSelect("");
         }
     }

@@ -14,7 +14,7 @@ function DirectoryMenu(props) {
     return (
         <div>
             { data.map((filename) => (
-                <DirectoryItem name={filename} key={filename} handleSubdirSelect={props.handleSubdirSelect} />
+                <DirectoryItem name={filename} key={filename} handleSubdirSelect={props.handleSubdirSelect} handlePatientSelect={props.handlePatientSelect} />
             )) }
         </div>
     );
