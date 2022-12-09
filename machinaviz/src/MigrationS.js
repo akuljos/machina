@@ -51,7 +51,10 @@ function MigrationS(props) {
         edges: {
             color: "#000000"
         },
-        height: "500px"
+        height: "500px",
+        physics: {
+            enabled: false
+        }
     };
 
     const events = {
