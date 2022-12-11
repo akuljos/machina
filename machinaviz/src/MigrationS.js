@@ -4,7 +4,7 @@ import Graph from "react-graph-vis";
 import { v4 as uuidv4 } from 'uuid';
 
 const colors = [
-    "",
+    "#000000",
     "#ff3333",
     "#33ff33",
     "#3333ff",
@@ -57,7 +57,7 @@ function MigrationS(props) {
             nodes: built_nodes,
             edges: built_relationships
         }))
-        .then(() => setMsg("Phylogeny"));
+        .then(() => setMsg("Clone Tree"));
     }
 
     const options = {
@@ -65,7 +65,7 @@ function MigrationS(props) {
             hierarchical: true
         },
         height: "250px",
-        width: "500px",
+        width: "50%",
         physics: {
             enabled: false
         }
