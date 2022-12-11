@@ -38,11 +38,12 @@ function MigrationS(props) {
         edges: []
     });
 
+    const [msg,setMsg] = useState("");
+
     if (props.subdirectory !== "" && props.patient !== "") {
         fetch(`/extract-patient-data?subdirectory=${props.subdirectory}&patient=${props.patient}`)
         .then((res) => res.json())
         .then((data) => { 
-            console.log(data.nodes[0]);
             for (var i = 0; i < data.nodes.length; i++) {
                 built_nodes.push({ id: "graph_node_" + data.nodes[i].node, name: data.nodes[i].node, title: data.nodes[i].node, color: colors[data.nodes[i].color] });
             }
@@ -55,14 +56,16 @@ function MigrationS(props) {
         .then(() => setGraph({
             nodes: built_nodes,
             edges: built_relationships
-        }));
+        }))
+        .then(() => setMsg("Phylogeny"));
     }
 
     const options = {
         layout: {
             hierarchical: true
         },
-        height: "500px",
+        height: "250px",
+        width: "500px",
         physics: {
             enabled: false
         }
@@ -75,6 +78,8 @@ function MigrationS(props) {
     };
 
     return (
+        <div align="left" className="phylogeny">
+        <h3>{msg}</h3>
         <Graph
             key={uuidv4()}
             graph={graph}
@@ -84,6 +89,7 @@ function MigrationS(props) {
             //  if you want access to vis.js network api you can set the state in a parent component using this property
             }}
         />
+        </div>
     );
 }
 

@@ -31,6 +31,7 @@ function App() {
               <PatientMenu subdirectory={subdirectory} handlePatientSelect={handlePatient} />
           </div>
           <div className="box-cell tree-box" >
+            <h1>Patient Report</h1>
             <MigrationS subdirectory={subdirectory} patient={patient} />
           </div>
         </div> 
