@@ -3,6 +3,19 @@ import ReactDOM from "react-dom";
 import Graph from "react-graph-vis";
 import { v4 as uuidv4 } from 'uuid';
 
+const colors = [
+    "",
+    "#ff3333",
+    "#33ff33",
+    "#3333ff",
+    "#ffff33",
+    "#33ffff",
+    "#ff33ff",
+    "#333333",
+    "#affc8f",
+    "#cc43c1"
+]
+
 function MigrationS(props) {
     /*
     right_rib_7 right_subdural
@@ -29,8 +42,9 @@ function MigrationS(props) {
         fetch(`/extract-patient-data?subdirectory=${props.subdirectory}&patient=${props.patient}`)
         .then((res) => res.json())
         .then((data) => { 
+            console.log(data.nodes[0]);
             for (var i = 0; i < data.nodes.length; i++) {
-                built_nodes.push({ id: "graph_node_" + data.nodes[i], name: data.nodes[i], title: data.nodes[i] });
+                built_nodes.push({ id: "graph_node_" + data.nodes[i].node, name: data.nodes[i].node, title: data.nodes[i].node, color: colors[data.nodes[i].color] });
             }
 
             for (var i = 0; i < data.relationships.length; i++) {
@@ -47,9 +61,6 @@ function MigrationS(props) {
     const options = {
         layout: {
             hierarchical: true
-        },
-        edges: {
-            color: "#000000"
         },
         height: "500px",
         physics: {

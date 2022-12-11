@@ -35,15 +35,41 @@ app.get("/extract-patient-data", (req, res) => {
 
     var nodeSet = new Set();
     var relationshipSet = new Set();
+    var colorSet = new Array(15);
 
+    // Load tree topology
     let treeStr = fs.readFileSync(DATA_CONTAINER + subdirectory + "/" + patient + "/" + patient + ".tree", 'utf-8').split('\n');
     
+    // Load coloring
+    let colorStr = fs.readFileSync(DATA_CONTAINER + subdirectory + "/coloring.txt", 'utf-8').split('\n');
+
+    // Load labeling
+    let labelStr = fs.readFileSync(DATA_CONTAINER + subdirectory + "/" + patient + "/" + patient + ".reported.labeling", 'utf-8').split('\n');
 
     for (let i = 0; i < treeStr.length; i++) {
         if (treeStr[i].length > 0) {
-            nodeSet.add(treeStr[i].split(" ")[0])
-            nodeSet.add(treeStr[i].split(" ")[1]);
+            //nodeSet.add(treeStr[i].split(" ")[0]);
+            //nodeSet.add(treeStr[i].split(" ")[1]);
             relationshipSet.add([treeStr[i].split(" ")[0], treeStr[i].split(" ")[1]]);
+        }
+    }
+
+    // Assign colors to labelling
+    let ind = 0;
+    for (let i = 0; i < colorStr.length; i++) {
+        if (colorStr[i].length > 0) {
+            ind = parseInt(colorStr[i].split(" ")[1])
+            colorSet[ind] = colorStr[i].split(" ")[0]
+        }
+    }
+
+    for (let i = 0; i < labelStr.length; i++) {
+        if (labelStr[i].length > 0) {
+            nodeSet.add({
+                node: labelStr[i].split(" ")[0],
+                label: labelStr[i].split(" ")[1],
+                color: colorSet.indexOf(labelStr[i].split(" ")[1])
+            })
         }
     }
 
