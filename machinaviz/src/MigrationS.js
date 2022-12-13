@@ -39,25 +39,51 @@ function MigrationS(props) {
     });
 
     const [msg,setMsg] = useState("");
+    const [labels, setLabels] = useState([]);
+    const [label, setLabel] = useState("");
 
     if (props.subdirectory !== "" && props.patient !== "") {
-        fetch(`/extract-patient-data?subdirectory=${props.subdirectory}&patient=${props.patient}`)
+        fetch(`/get-potential-labelings?subdirectory=${props.subdirectory}&patient=${props.patient}`)
         .then((res) => res.json())
-        .then((data) => { 
-            for (var i = 0; i < data.nodes.length; i++) {
-                built_nodes.push({ id: "graph_node_" + data.nodes[i].node, name: data.nodes[i].node, title: data.nodes[i].node, color: colors[data.nodes[i].color] });
-            }
+        .then((data) => setLabels(data.labels));
 
-            for (var i = 0; i < data.relationships.length; i++) {
-                built_relationships.push({ from: "graph_node_" + data.relationships[i][0], to: "graph_node_" + data.relationships[i][1] })
-            }
+        if (labels.length == 0) {
+            fetch(`/extract-patient-data?subdirectory=${props.subdirectory}&patient=${props.patient}&labelfile=none`)
+            .then((res) => res.json())
+            .then((data) => { 
+                for (var i = 0; i < data.nodes.length; i++) {
+                    built_nodes.push({ id: "graph_node_" + data.nodes[i].node, name: data.nodes[i].node, title: data.nodes[i].node, color: colors[data.nodes[i].color] });
+                }
 
-        })
-        .then(() => setGraph({
-            nodes: built_nodes,
-            edges: built_relationships
-        }))
-        .then(() => setMsg("Clone Tree"));
+                for (var i = 0; i < data.relationships.length; i++) {
+                    built_relationships.push({ from: "graph_node_" + data.relationships[i][0], to: "graph_node_" + data.relationships[i][1] })
+                }
+            })
+            .then(() => setGraph({
+                nodes: built_nodes,
+                edges: built_relationships
+            }))
+            .then(() => setMsg("Clone Tree"));
+        } else {
+            if (label != "") {
+                fetch(`/extract-patient-data?subdirectory=${props.subdirectory}&patient=${props.patient}&labelfile=${label}`)
+                .then((res) => res.json())
+                .then((data) => { 
+                    for (var i = 0; i < data.nodes.length; i++) {
+                        built_nodes.push({ id: "graph_node_" + data.nodes[i].node, name: data.nodes[i].node, title: data.nodes[i].node, color: colors[data.nodes[i].color] });
+                    }
+
+                    for (var i = 0; i < data.relationships.length; i++) {
+                        built_relationships.push({ from: "graph_node_" + data.relationships[i][0], to: "graph_node_" + data.relationships[i][1] })
+                    }
+                })
+                .then(() => setGraph({
+                    nodes: built_nodes,
+                    edges: built_relationships
+                }))
+                .then(() => setMsg("Clone Tree"));
+            }
+        }
     }
 
     const options = {
@@ -77,20 +103,45 @@ function MigrationS(props) {
         }
     };
 
-    return (
-        <div align="left" className="phylogeny">
-        <h3>{msg}</h3>
-        <Graph
-            key={uuidv4()}
-            graph={graph}
-            options={options}
-            events={events}
-            getNetwork={network => {
-            //  if you want access to vis.js network api you can set the state in a parent component using this property
-            }}
-        />
-        </div>
-    );
+    if (labels.length == 0) {
+        return (
+            <div align="left" className="phylogeny">
+            <h3>{msg}</h3>
+            <Graph
+                key={uuidv4()}
+                graph={graph}
+                options={options}
+                events={events}
+                getNetwork={network => {
+                //  if you want access to vis.js network api you can set the state in a parent component using this property
+                }}
+            />
+            </div>
+        );
+    } else {
+        let handleChange = (e) => {
+            setLabel(e.target.value)
+        }
+
+        return (
+            <div align="left" className="phylogeny">
+                <h3>{msg}</h3>
+                <select onChange={handleChange}> 
+                    <option value="⬇️ Select labeling ⬇️"><p>-- Select labeling -- </p></option>
+                    {labels.map((label) => <option value={label}>{label}</option>)}
+                </select>
+                <Graph
+                    key={uuidv4()}
+                    graph={graph}
+                    options={options}
+                    events={events}
+                    getNetwork={network => {
+                    //  if you want access to vis.js network api you can set the state in a parent component using this property
+                    }}
+                />
+            </div>
+        );
+    }
 }
 
 export default MigrationS;

@@ -29,13 +29,32 @@ app.get("/extract-file-names", (req, res) => {
     res.json({ message: patientArr });
 })
 
-app.get("/extract-patient-data", (req, res) => {
+app.get("/get-potential-labelings", (req, res) => {
     var subdirectory = req.query.subdirectory;
     var patient = req.query.patient;
 
+    try {
+        fs.readFileSync(DATA_CONTAINER + subdirectory + "/" + patient + "/" + patient + ".reported.labeling", 'utf-8').split('\n');
+        res.json({ labels: [] });
+    } catch (error) {
+        fs.readdir(DATA_CONTAINER + subdirectory + "/" + patient + "/potential_labelings", function(err, files) {
+            if (err) {
+                return console.log('Unable to scan directory: ' + err);
+            } else {
+                res.json({ labels: files });
+            }
+        });
+    }
+})
+
+app.get("/extract-patient-data", (req, res) => {
+    var subdirectory = req.query.subdirectory;
+    var patient = req.query.patient;
+    var labelfile = req.query.labelfile;
+
     var nodeSet = new Set();
     var relationshipSet = new Set();
-    var colorSet = new Array(15);
+    var colorSet = new Array(40);
 
     // Load tree topology
     let treeStr = fs.readFileSync(DATA_CONTAINER + subdirectory + "/" + patient + "/" + patient + ".tree", 'utf-8').split('\n');
@@ -44,7 +63,12 @@ app.get("/extract-patient-data", (req, res) => {
     let colorStr = fs.readFileSync(DATA_CONTAINER + subdirectory + "/coloring.txt", 'utf-8').split('\n');
 
     // Load labeling
-    let labelStr = fs.readFileSync(DATA_CONTAINER + subdirectory + "/" + patient + "/" + patient + ".reported.labeling", 'utf-8').split('\n');
+    labelStr = "";
+    if (labelfile == 'none') {
+        labelStr = fs.readFileSync(DATA_CONTAINER + subdirectory + "/" + patient + "/" + patient + ".reported.labeling", 'utf-8').split('\n');
+    } else {
+        labelStr = fs.readFileSync(DATA_CONTAINER + subdirectory + "/" + patient + "/potential_labelings/" + labelfile, 'utf-8').split('\n');
+    }
 
     for (let i = 0; i < treeStr.length; i++) {
         if (treeStr[i].length > 0) {
