@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useState } from 'react';
-import MigrationS from './MigrationS';
+import ClonalTree from './ClonalTree';
 import DirectoryMenu from './DirectoryMenu.js';
 import PatientMenu from './PatientMenu.js';
 import Treant from 'treant';
@@ -32,7 +32,7 @@ function App() {
           </div>
           <div className="box-cell tree-box" >
             <h1>Patient Report</h1>
-            <MigrationS subdirectory={subdirectory} patient={patient} />
+            <ClonalTree subdirectory={subdirectory} patient={patient} />
           </div>
         </div> 
     </div>

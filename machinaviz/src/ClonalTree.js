@@ -60,36 +60,46 @@ async function extractPatientData(subdirectory, patient, labelfile) {
  * @param {*} props HTML props (subdirectory, patient)
  * @returns HTML tag components
  */
-function MigrationS(props) {
+function ClonalTree(props) {
+    // Vertices and Edges in the Clonal Tree
     var built_nodes = [];
     var built_relationships = [];
+
+    // Map between node labels and node colors
     var label2color = {};
 
-    const [graph,setGraph] = useState({
+    // Clonal tree graph
+    const [graph, setGraph] = useState({
         nodes: [],
         edges: []
     });
 
-    const [msg, setMsg] = useState("");
-    const [labels, setLabels] = useState([]);
-    const [label, setLabel] = useState("");
-    const [map, setMap] = useState({});
-    const [legend, setLegend] = useState("");
+    // React States
+    const [msg, setMsg] = useState("");         // Clonal Tree Section Heading
+    const [labels, setLabels] = useState([]);   // Label file list
+    const [label, setLabel] = useState("");     // Currently selected labelfile
+    const [map, setMap] = useState({});         // Label to color mapping
+    const [legend, setLegend] = useState("");   // Legend Section heading
 
     if (props.subdirectory !== "" && props.patient !== "") {
+        // Extract labelfiles, and return none if labeling is reported
         getPotentialLabelings(props.subdirectory, props.patient).then((data) => setLabels(data.labels));
 
         if (labels.length == 0) {
+            // Extract patient clonal tree nodes and edges
             extractPatientData(props.subdirectory, props.patient, 'none').then((data) => { 
+                // Extract nodes and labels
                 for (var i = 0; i < data.nodes.length; i++) {
                     built_nodes.push({ id: "graph_node_" + data.nodes[i].node, name: data.nodes[i].node, title: data.nodes[i].node, color: colors[data.nodes[i].color] });
                     label2color[data.nodes[i].label] = colors[data.nodes[i].color]
                 }
 
+                // Extract edges
                 for (var i = 0; i < data.relationships.length; i++) {
                     built_relationships.push({ from: "graph_node_" + data.relationships[i][0], to: "graph_node_" + data.relationships[i][1] })
                 }
             })
+            // Set states
             .then(() => setGraph({
                 nodes: built_nodes,
                 edges: built_relationships
@@ -99,6 +109,7 @@ function MigrationS(props) {
             .then(() => setLegend("Legend"));
         } else {
             if (label != "") {
+                // If there is a selected label file that is not the reported label, execute the same procedure but on that labelfile instead
                 extractPatientData(props.subdirectory, props.patient, label).then((data) => { 
                     for (var i = 0; i < data.nodes.length; i++) {
                         built_nodes.push({ id: "graph_node_" + data.nodes[i].node, name: data.nodes[i].node, title: data.nodes[i].node, color: colors[data.nodes[i].color] });
@@ -119,6 +130,8 @@ function MigrationS(props) {
             }
         }
     }
+
+    // Style up the graph
     const options = {
         layout: {
             hierarchical: true
@@ -130,6 +143,7 @@ function MigrationS(props) {
         }
     };
 
+    // Event handler for the graph? (Not actually sure what this is...)
     const events = {
         select: function(event) {
             var { nodes, edges } = event;
@@ -137,6 +151,8 @@ function MigrationS(props) {
     };
 
     if (labels.length == 0) {
+        // If the labelling is reported, don't prompt the user to select it
+        // Render the component as such
         return (
             <div align="left" className="phylogeny">
                 <div className="clonalcontain">
@@ -162,10 +178,12 @@ function MigrationS(props) {
             </div>
         );
     } else {
+        // Event handler for labelfile selection
         let handleChange = (e) => {
             setLabel(e.target.value)
         }
 
+        // Render the component otherwise, as such
         return (
             <div align="left" className="phylogeny">
                 <div className="clonalcontain">
@@ -197,4 +215,4 @@ function MigrationS(props) {
     }
 }
 
-export default MigrationS;
+export default ClonalTree;
