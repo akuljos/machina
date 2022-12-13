@@ -5,6 +5,7 @@ import DirectoryMenu from './DirectoryMenu.js';
 import PatientMenu from './PatientMenu.js';
 import Treant from 'treant';
 import { v4 as uuidv4 } from 'uuid';
+import Migration from './Migration';
 
 function App() {
   const [subdirectory, setSubdirectory] = useState("");
@@ -33,6 +34,7 @@ function App() {
           <div className="box-cell tree-box" >
             <h1>Patient Report</h1>
             <ClonalTree subdirectory={subdirectory} patient={patient} />
+            <Migration subdirectory={subdirectory} patient={patient} />
           </div>
         </div> 
     </div>
