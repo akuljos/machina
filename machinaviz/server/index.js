@@ -10,6 +10,15 @@ const PORT = process.env.PORT || 3001;
 
 const app = express();
 
+function myIndexOf(arr, elem) {
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i].includes(elem)) {
+            return i;
+        }
+    }
+    return -1;
+}
+
 app.get("/extract-dir-names", (req, res) => {
     let fileArr = [];
     fs.readdirSync(DIRECTORY_CONTAINER).forEach(file => {
@@ -54,7 +63,7 @@ app.get("/extract-patient-data", (req, res) => {
 
     var nodeSet = new Set();
     var relationshipSet = new Set();
-    var colorSet = new Array(40);
+    var colorSet = Array.from(Array(40), () => []);
 
     // Load tree topology
     let treeStr = fs.readFileSync(DATA_CONTAINER + subdirectory + "/" + patient + "/" + patient + ".tree", 'utf-8').split('\n');
@@ -83,7 +92,7 @@ app.get("/extract-patient-data", (req, res) => {
     for (let i = 0; i < colorStr.length; i++) {
         if (colorStr[i].length > 0) {
             ind = parseInt(colorStr[i].split(" ")[1])
-            colorSet[ind] = colorStr[i].split(" ")[0]
+            colorSet[ind].push(colorStr[i].split(" ")[0])
         }
     }
 
@@ -92,7 +101,7 @@ app.get("/extract-patient-data", (req, res) => {
             nodeSet.add({
                 node: labelStr[i].split(" ")[0],
                 label: labelStr[i].split(" ")[1],
-                color: colorSet.indexOf(labelStr[i].split(" ")[1])
+                color: myIndexOf(colorSet, labelStr[i].split(" ")[1])
             })
         }
     }
