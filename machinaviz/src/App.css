@@ -52,7 +52,7 @@
   height:100%;
 }
 
-h1, h2, h3, h4, h5, h6, p, header {
+h1, h2, h3, h4, h5, h6, p, header, span {
   font-family: "Lucida Console", "Courier New", monospace;
 }
 
@@ -62,4 +62,8 @@ h1 {
 
 .phylogeny {
   padding-left: 15px;
+}
+
+.clonalcontain {
+  display: flex;
 }
