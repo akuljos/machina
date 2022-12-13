@@ -16,20 +16,21 @@ const colors = [
     "#cc43c1"
 ]
 
-function MigrationS(props) {
-    /*
-    right_rib_7 right_subdural
-    right_rib_7 right_inguinal_lymph_node
-    right_rib_7 right_subdural
-    right_rib_7 right_inguinal_lymph_node
-    right_rib_7 right_inguinal_lymph_node
-    prostate right_rib_7
-    prostate left_adrenal_gland
-    prostate right_rib_7
-    prostate left_adrenal_gland
-    prostate left_adrenal_gland
-    */
+async function getPotentialLabelings(subdirectory, patient) {
+    const response = await fetch(`/get-potential-labelings?subdirectory=${subdirectory}&patient=${patient}`);
+    const data = await response.json();
 
+    return data;
+}
+
+async function extractPatientData(subdirectory, patient, labelfile) {
+    const response = await fetch(`/extract-patient-data?subdirectory=${subdirectory}&patient=${patient}&labelfile=${labelfile}`);
+    const data = await response.json();
+
+    return data;
+}
+
+function MigrationS(props) {
     var built_nodes = [];
     var built_relationships = [];
 
@@ -43,14 +44,10 @@ function MigrationS(props) {
     const [label, setLabel] = useState("");
 
     if (props.subdirectory !== "" && props.patient !== "") {
-        fetch(`/get-potential-labelings?subdirectory=${props.subdirectory}&patient=${props.patient}`)
-        .then((res) => res.json())
-        .then((data) => setLabels(data.labels));
+        getPotentialLabelings(props.subdirectory, props.patient).then((data) => setLabels(data.labels));
 
         if (labels.length == 0) {
-            fetch(`/extract-patient-data?subdirectory=${props.subdirectory}&patient=${props.patient}&labelfile=none`)
-            .then((res) => res.json())
-            .then((data) => { 
+            extractPatientData(props.subdirectory, props.patient, 'none').then((data) => { 
                 for (var i = 0; i < data.nodes.length; i++) {
                     built_nodes.push({ id: "graph_node_" + data.nodes[i].node, name: data.nodes[i].node, title: data.nodes[i].node, color: colors[data.nodes[i].color] });
                 }
@@ -66,9 +63,7 @@ function MigrationS(props) {
             .then(() => setMsg("Clone Tree"));
         } else {
             if (label != "") {
-                fetch(`/extract-patient-data?subdirectory=${props.subdirectory}&patient=${props.patient}&labelfile=${label}`)
-                .then((res) => res.json())
-                .then((data) => { 
+                extractPatientData(props.subdirectory, props.patient, label).then((data) => { 
                     for (var i = 0; i < data.nodes.length; i++) {
                         built_nodes.push({ id: "graph_node_" + data.nodes[i].node, name: data.nodes[i].node, title: data.nodes[i].node, color: colors[data.nodes[i].color] });
                     }
