@@ -82,7 +82,6 @@ function MigrationS(props) {
         if (labels.length == 0) {
             extractPatientData(props.subdirectory, props.patient, 'none').then((data) => { 
                 for (var i = 0; i < data.nodes.length; i++) {
-                    console.log(data.nodes[i].label, data.nodes[i].color);
                     built_nodes.push({ id: "graph_node_" + data.nodes[i].node, name: data.nodes[i].node, title: data.nodes[i].node, color: colors[data.nodes[i].color] });
                     label2color[data.nodes[i].label] = colors[data.nodes[i].color]
                 }
