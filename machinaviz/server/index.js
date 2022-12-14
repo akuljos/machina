@@ -57,10 +57,10 @@ app.get("/get-potential-labelings", (req, res) => {
     var subdirectory = req.query.subdirectory;
     var patient = req.query.patient;
 
-    try {
+    if (fs.existsSync(DATA_CONTAINER + subdirectory + "/" + patient + "/" + patient + ".reported.labeling", 'utf-8')) {
         fs.readFileSync(DATA_CONTAINER + subdirectory + "/" + patient + "/" + patient + ".reported.labeling", 'utf-8').split('\n');
         res.json({ labels: [] });
-    } catch (error) {
+    } else {
         fs.readdir(DATA_CONTAINER + subdirectory + "/" + patient + "/potential_labelings", function(err, files) {
             if (err) {
                 return console.log('Unable to scan directory: ' + err);
@@ -134,6 +134,75 @@ app.get("/extract-pmh", (req, res) => {
     var subdirectory = req.query.subdirectory;
     var patient = req.query.patient;
     var pmh = req.query.pmh;
+
+    var nodeSet = new Set();
+    var relationshipSet = new Set();
+    var colorSet = Array.from(Array(40), () => []);
+
+    // Load coloring
+    let colorStr = fs.readFileSync(DATA_CONTAINER + subdirectory + "/coloring.txt", 'utf-8').split('\n');
+
+    // Load tree topology
+    let edges = []
+    let vertices = []
+    let treeStr = fs.readFileSync(DATA_CONTAINER + subdirectory + "/" + patient + "/pmh/" + pmh + ".tree", 'utf-8').split('\n');
+
+    treeStr.forEach((edge) => {edges.push(edge.split(" "))});
+
+    if (fs.existsSync(DATA_CONTAINER + subdirectory + "/" + patient + "/pmh/" + pmh + ".labeling")) {
+        // Load labeling
+        let labelStr = fs.readFileSync(DATA_CONTAINER + subdirectory + "/" + patient + "/pmh/" + pmh + ".labeling", 'utf-8').split('\n');
+
+        labelStr.forEach((label) => {
+            var v = label.split(" ")[0]
+            var l = label.split(" ")[1]
+
+            for (let i = 0; i < edges.length; i++) {
+                if (edges[i][0] == v) {
+                    edges[i][0] = l;
+                }
+                if (edges[i][1] == v) {
+                    edges[i][1] = l;
+                }
+            }
+        })
+    }
+
+    edges.forEach((edge) => {
+        if (!vertices.includes(edge[0])) {
+            vertices.push(edge[0])
+        }
+        if (!vertices.includes(edge[1])) {
+            vertices.push(edge[1])
+        }
+    });
+
+    // Assign colors to labelling
+    let ind = 0;
+    for (let i = 0; i < colorStr.length; i++) {
+        if (colorStr[i].length > 0) {
+            ind = parseInt(colorStr[i].split(" ")[1])
+            colorSet[ind].push(colorStr[i].split(" ")[0])
+        }
+    }
+
+    edges.forEach((edge) => {relationshipSet.add(edge)})
+
+    vertices.forEach((vertex) => {
+        nodeSet.add({
+            node: vertex,
+            label: vertex,
+            color: myIndexOf(colorSet, vertex)
+        });
+    })
+
+    var nodeArr = [];
+    nodeSet.forEach((item) => {if (item.color != -1) {nodeArr.push(item)}});
+
+    var relationshipArr = [];
+    relationshipSet.forEach((item) => {if (item != [''] && item != [undefined]) {relationshipArr.push(item)}});
+
+    res.json({ nodes: nodeArr, relationships: relationshipArr });
 });
 
 app.listen(PORT, () => {

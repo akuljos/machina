@@ -94,11 +94,9 @@ function ClonalTree(props) {
     };
 
     // React States
-    const [msg, setMsg] = useState("");         // Clonal Tree Section Heading
     const [labels, setLabels] = useState([]);   // Label file list
     const [label, setLabel] = useState("");     // Currently selected labelfile
     const [map, setMap] = useState({});         // Label to color mapping
-    const [legend, setLegend] = useState("");   // Legend Section heading
 
     useLayoutEffect(() => {
         if (props.subdirectory !== "" && props.patient !== "") {
@@ -147,7 +145,7 @@ function ClonalTree(props) {
             }
         }
     })
-    
+
     if (props.subdirectory !== "" && props.patient !== "") {
         if (labels.length == 0) {
             // If the labelling is reported, don't prompt the user to select it
