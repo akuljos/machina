@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import ReactDOM from "react-dom";
 import Graph from "react-graph-vis";
 import { v4 as uuidv4 } from 'uuid';
@@ -74,63 +74,6 @@ function ClonalTree(props) {
         edges: []
     });
 
-    // React States
-    const [msg, setMsg] = useState("");         // Clonal Tree Section Heading
-    const [labels, setLabels] = useState([]);   // Label file list
-    const [label, setLabel] = useState("");     // Currently selected labelfile
-    const [map, setMap] = useState({});         // Label to color mapping
-    const [legend, setLegend] = useState("");   // Legend Section heading
-
-    if (props.subdirectory !== "" && props.patient !== "") {
-        // Extract labelfiles, and return none if labeling is reported
-        getPotentialLabelings(props.subdirectory, props.patient).then((data) => setLabels(data.labels));
-
-        if (labels.length == 0) {
-            // Extract patient clonal tree nodes and edges
-            extractPatientData(props.subdirectory, props.patient, 'none').then((data) => { 
-                // Extract nodes and labels
-                for (var i = 0; i < data.nodes.length; i++) {
-                    built_nodes.push({ id: "graph_node_" + data.nodes[i].node, name: data.nodes[i].node, title: data.nodes[i].node, color: colors[data.nodes[i].color] });
-                    label2color[data.nodes[i].label] = colors[data.nodes[i].color]
-                }
-
-                // Extract edges
-                for (var i = 0; i < data.relationships.length; i++) {
-                    built_relationships.push({ from: "graph_node_" + data.relationships[i][0], to: "graph_node_" + data.relationships[i][1] })
-                }
-            })
-            // Set states
-            .then(() => setGraph({
-                nodes: built_nodes,
-                edges: built_relationships
-            }))
-            .then(() => setMsg("Clone Tree"))
-            .then(() => setMap(label2color))
-            .then(() => setLegend("Legend"));
-        } else {
-            if (label != "") {
-                // If there is a selected label file that is not the reported label, execute the same procedure but on that labelfile instead
-                extractPatientData(props.subdirectory, props.patient, label).then((data) => { 
-                    for (var i = 0; i < data.nodes.length; i++) {
-                        built_nodes.push({ id: "graph_node_" + data.nodes[i].node, name: data.nodes[i].node, title: data.nodes[i].node, color: colors[data.nodes[i].color] });
-                        label2color[data.nodes[i].label] = colors[data.nodes[i].color]
-                    }
-
-                    for (var i = 0; i < data.relationships.length; i++) {
-                        built_relationships.push({ from: "graph_node_" + data.relationships[i][0], to: "graph_node_" + data.relationships[i][1] })
-                    }
-                })
-                .then(() => setGraph({
-                    nodes: built_nodes,
-                    edges: built_relationships
-                }))
-                .then(() => setMsg("Clone Tree"))
-                .then(() => setMap(label2color))
-                .then(() => setLegend("Legend"));
-            }
-        }
-    }
-
     // Style up the graph
     const options = {
         layout: {
@@ -150,68 +93,125 @@ function ClonalTree(props) {
         }
     };
 
-    if (labels.length == 0) {
-        // If the labelling is reported, don't prompt the user to select it
-        // Render the component as such
-        return (
-            <div align="left" className="phylogeny">
-                <div className="clonalcontain">
-                    <div className='clonalchild'>
-                        <h3>{msg}</h3>
-                        <Graph
-                            key={uuidv4()}
-                            graph={graph}
-                            options={options}
-                            events={events}
-                            getNetwork={network => {
-                            //  if you want access to vis.js network api you can set the state in a parent component using this property
-                            }}
-                        />
-                    </div>
-                    <div className="clonalchild">
-                        <h3>{legend}</h3>
-                        <ul>
-                            {zip([Object.keys(map), Object.values(map)]).map((l) => <li style={{color: l[1], liststyle: "circle"}}><p style={{color: "black"}}>{l[0]}</p></li>)}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        );
-    } else {
-        // Event handler for labelfile selection
-        let handleChange = (e) => {
-            setLabel(e.target.value)
-        }
+    // React States
+    const [msg, setMsg] = useState("");         // Clonal Tree Section Heading
+    const [labels, setLabels] = useState([]);   // Label file list
+    const [label, setLabel] = useState("");     // Currently selected labelfile
+    const [map, setMap] = useState({});         // Label to color mapping
+    const [legend, setLegend] = useState("");   // Legend Section heading
 
-        // Render the component otherwise, as such
-        return (
-            <div align="left" className="phylogeny">
-                <div className="clonalcontain">
-                    <div className="clonalchild">
-                        <h3>{msg}</h3>
-                        <span>Select Label File: <select onChange={handleChange}> 
-                            <option value="⬇️ Select labeling ⬇️"><p>-- Select labeling -- </p></option>
-                            {labels.map((label) => <option value={label}>{label}</option>)}
-                        </select></span>
-                        <Graph
-                            key={uuidv4()}
-                            graph={graph}
-                            options={options}
-                            events={events}
-                            getNetwork={network => {
-                            //  if you want access to vis.js network api you can set the state in a parent component using this property
-                            }}
-                        />
-                    </div>
-                    <div className="clonalchild">
-                        <h3>{legend}</h3>
-                        <ul>
-                            {zip([Object.keys(map), Object.values(map)]).map((l) => <li style={{color: l[1], liststyle: "circle"}}><p style={{color: "black"}}>{l[0]}</p></li>)}
-                        </ul>
+    useLayoutEffect(() => {
+        if (props.subdirectory !== "" && props.patient !== "") {
+            // Extract labelfiles, and return none if labeling is reported
+            getPotentialLabelings(props.subdirectory, props.patient).then((data) => setLabels(data.labels));
+
+            if (labels.length == 0) {
+                // Extract patient clonal tree nodes and edges
+                extractPatientData(props.subdirectory, props.patient, 'none').then((data) => { 
+                    // Extract nodes and labels
+                    for (var i = 0; i < data.nodes.length; i++) {
+                        built_nodes.push({ id: "graph_node_" + data.nodes[i].node, name: data.nodes[i].node, title: data.nodes[i].node, color: colors[data.nodes[i].color] });
+                        label2color[data.nodes[i].label] = colors[data.nodes[i].color]
+                    }
+    
+                    // Extract edges
+                    for (var i = 0; i < data.relationships.length; i++) {
+                        built_relationships.push({ from: "graph_node_" + data.relationships[i][0], to: "graph_node_" + data.relationships[i][1] })
+                    }
+                })
+                // Set states
+                .then(() => setGraph({
+                    nodes: built_nodes,
+                    edges: built_relationships
+                }))
+                .then(() => setMap(label2color));
+            } else {
+                if (label != "") {
+                    // If there is a selected label file that is not the reported label, execute the same procedure but on that labelfile instead
+                    extractPatientData(props.subdirectory, props.patient, label).then((data) => { 
+                        for (var i = 0; i < data.nodes.length; i++) {
+                            built_nodes.push({ id: "graph_node_" + data.nodes[i].node, name: data.nodes[i].node, title: data.nodes[i].node, color: colors[data.nodes[i].color] });
+                            label2color[data.nodes[i].label] = colors[data.nodes[i].color]
+                        }
+    
+                        for (var i = 0; i < data.relationships.length; i++) {
+                            built_relationships.push({ from: "graph_node_" + data.relationships[i][0], to: "graph_node_" + data.relationships[i][1] })
+                        }
+                    })
+                    .then(() => setGraph({
+                        nodes: built_nodes,
+                        edges: built_relationships
+                    }))
+                    .then(() => setMap(label2color));
+                }
+            }
+        }
+    })
+    
+    if (props.subdirectory !== "" && props.patient !== "") {
+        if (labels.length == 0) {
+            // If the labelling is reported, don't prompt the user to select it
+            // Render the component as such
+            return (
+                <div align="left" className="phylogeny">
+                    <div className="clonalcontain">
+                        <div className='clonalchild'>
+                            <h3>Clone Tree</h3>
+                            <Graph
+                                key={uuidv4()}
+                                graph={graph}
+                                options={options}
+                                events={events}
+                                getNetwork={network => {
+                                //  if you want access to vis.js network api you can set the state in a parent component using this property
+                                }}
+                            />
+                        </div>
+                        <div className="clonalchild">
+                            <h3>Legend</h3>
+                            <ul>
+                                {zip([Object.keys(map), Object.values(map)]).map((l) => <li style={{color: l[1], liststyle: "circle"}}><p style={{color: "black"}}>{l[0]}</p></li>)}
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-        );
+            );
+        } else {
+            // Event handler for labelfile selection
+            let handleChange = (e) => {
+                setLabel(e.target.value)
+            }
+
+            // Render the component otherwise, as such
+            return (
+                <div align="left" className="phylogeny">
+                    <div className="clonalcontain">
+                        <div className="clonalchild">
+                            <h3>Clone Tree</h3>
+                            <span>Select Label File: <select onChange={handleChange}> 
+                                <option value="⬇️ Select labeling ⬇️"><p>-- Select labeling -- </p></option>
+                                {labels.map((label) => <option value={label}>{label}</option>)}
+                            </select></span>
+                            <Graph
+                                key={uuidv4()}
+                                graph={graph}
+                                options={options}
+                                events={events}
+                                getNetwork={network => {
+                                //  if you want access to vis.js network api you can set the state in a parent component using this property
+                                }}
+                            />
+                        </div>
+                        <div className="clonalchild">
+                            <h3>Legend</h3>
+                            <ul>
+                                {zip([Object.keys(map), Object.values(map)]).map((l) => <li style={{color: l[1], liststyle: "circle"}}><p style={{color: "black"}}>{l[0]}</p></li>)}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
     }
 }
 

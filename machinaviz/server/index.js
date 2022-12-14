@@ -22,11 +22,26 @@ function myIndexOf(arr, elem) {
 app.get("/extract-dir-names", (req, res) => {
     let fileArr = [];
     fs.readdirSync(DIRECTORY_CONTAINER).forEach(file => {
-        if (file != "sims" && fs.lstatSync(DIRECTORY_CONTAINER + file).isDirectory()) {
+        if (file != "sims" && file != "sanborn_2015" && fs.lstatSync(DIRECTORY_CONTAINER + file).isDirectory()) {
             fileArr.push(file);
         }
     });
     res.json({ message: fileArr });
+});
+
+app.get("/extract-pmh-names", (req, res) => {
+    var subdirectory = req.query.subdirectory;
+    var patient = req.query.patient;
+
+    let fileArr = [];
+
+    fs.readdirSync(DATA_CONTAINER + subdirectory + "/" + patient + "/pmh").forEach(file => {
+        var gname = file.split('.')[0]
+        if (!fileArr.includes(gname)) {
+            fileArr.push(gname);
+        }
+    });
+    res.json({message: fileArr});
 });
 
 app.get("/extract-file-names", (req, res) => {
@@ -36,7 +51,7 @@ app.get("/extract-file-names", (req, res) => {
         patientArr = fs.readFileSync(PATIENT_CONTAINER + name + ".csv", 'utf-8').split(",");
     }
     res.json({ message: patientArr });
-})
+});
 
 app.get("/get-potential-labelings", (req, res) => {
     var subdirectory = req.query.subdirectory;
@@ -54,7 +69,7 @@ app.get("/get-potential-labelings", (req, res) => {
             }
         });
     }
-})
+});
 
 app.get("/extract-patient-data", (req, res) => {
     var subdirectory = req.query.subdirectory;
@@ -114,6 +129,12 @@ app.get("/extract-patient-data", (req, res) => {
 
     res.json({ nodes: nodeArr, relationships: relationshipArr });
 })
+
+app.get("/extract-pmh", (req, res) => {
+    var subdirectory = req.query.subdirectory;
+    var patient = req.query.patient;
+    var pmh = req.query.pmh;
+});
 
 app.listen(PORT, () => {
     console.log(`server listening on ${PORT}`);

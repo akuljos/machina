@@ -1,6 +1,0 @@
-Clone tree has 2 anatomical sites
-Warning: primary anatomical site 'LOv' missing in leaf labeling. Skipping.
-Found 1 maximum parsimony labelings with primary 'ROv'
-Found 1 labelings with 1 comigrations, 1 seeding sites and pPS
-Labeling 0: 2 migrations, 1 comigrations, 1 seeding sites and pPS
-Warning: primary anatomical site 'RUt' missing in leaf labeling. Skipping.
