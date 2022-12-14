@@ -1,7 +1,0 @@
-# 5 out of 5 mutations
-1 #trees
-4 #edges, tree 1
-cluster_4 cluster_1
-cluster_5 cluster_2
-cluster_5 cluster_3
-cluster_5 cluster_4

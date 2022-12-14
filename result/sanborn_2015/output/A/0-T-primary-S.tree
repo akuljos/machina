@@ -1,9 +1,0 @@
-cluster_4 cluster_3
-cluster_4 cluster_2
-cluster_3 cluster_3^locoregional_1
-cluster_3 cluster_3_primary
-cluster_3^locoregional_1 cluster_3_locoregional_1
-cluster_3^locoregional_1 cluster_1
-cluster_1 cluster_1_locoregional_1
-cluster_2 cluster_2_locoregional_2
-cluster_2 cluster_2_parotid_gland
