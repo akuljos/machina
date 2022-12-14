@@ -3,7 +3,7 @@ const express = require('express');
 const fs = require('fs');
 
 const DATA_CONTAINER = "../data/";
-const DIRECTORY_CONTAINER = "../result/";
+const DIRECTORY_CONTAINER = "../data/";
 const PATIENT_CONTAINER = "../patient_lists/";
 
 const PORT = process.env.PORT || 3001;
