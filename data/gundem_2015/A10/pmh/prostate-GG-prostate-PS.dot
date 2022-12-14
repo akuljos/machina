@@ -1,0 +1,9 @@
+digraph G {
+	3 [penwidth=3,colorscheme=set19,color=2,label="(right_iliac_lymph_node,0)"]
+	2 [penwidth=3,colorscheme=set19,color=1,label="(periportal_lymph_node,0)"]
+	1 [penwidth=3,colorscheme=set19,color=4,label="(perigastric_lymph_node,0)"]
+	0 [penwidth=3,colorscheme=set19,color=3,label="(prostate,0)"]
+	0 -> 3 [penwidth=3,colorscheme=set19,color="3;0.5:2"]
+	0 -> 2 [penwidth=3,colorscheme=set19,color="3;0.5:1"]
+	0 -> 1 [penwidth=3,colorscheme=set19,color="3;0.5:4"]
+}
