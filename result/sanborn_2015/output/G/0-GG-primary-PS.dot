@@ -1,7 +1,0 @@
-digraph G {
-	2 [penwidth=3,colorscheme=set19,color=7,label="(lung,0)"]
-	1 [penwidth=3,colorscheme=set19,color=5,label="(locoregional,0)"]
-	0 [penwidth=3,colorscheme=set19,color=3,label="(primary,0)"]
-	0 -> 2 [penwidth=3,colorscheme=set19,color="3;0.5:7"]
-	0 -> 1 [penwidth=3,colorscheme=set19,color="3;0.5:5"]
-}
