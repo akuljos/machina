@@ -1,7 +1,7 @@
 # MACHINA Interactive Visualization
 Akul Joshi, Vikram Ramavarapu
 
-(insert image here)
+![Overview of MACHINA](doc/overview.png)
 
 ## Installation and Setup
 Installation and set up is very simple. Simply run the following commands:
@@ -24,4 +24,4 @@ Simply select a dataset and a patient ID to view the clonal trees and migration 
   
 To switch to a different patient or dataset, simply deselect your current patient or dataset and switch to a new one.
 
-(insert UI image)
+![User Interface of the visualization](doc/ui.jpeg)
