@@ -44,3 +44,26 @@
   height:100%;
   padding: 1%;
 }
+
+.container .box-cell.tree-box {
+  position: absolute;
+  left: 40%;
+  width: 60%;
+  height:100%;
+}
+
+h1, h2, h3, h4, h5, h6, p, header, span {
+  font-family: "Lucida Console", "Courier New", monospace;
+}
+
+h1 {
+  text-align: center;
+}
+
+.phylogeny {
+  padding-left: 15px;
+}
+
+.clonalcontain {
+  display: flex;
+}

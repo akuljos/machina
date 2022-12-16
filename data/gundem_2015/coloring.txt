@@ -36,3 +36,4 @@ xiphoid 5
 right_diaphragm 3
 right_axillary_lymph_node 4
 sacrum 1
+labeless 0

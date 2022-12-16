@@ -14,7 +14,7 @@ function PatientMenu(props) {
     return (
         <div>
             { data.map((filename) => (
-                <PatientItem name={filename} key={filename} />
+                <PatientItem name={filename} key={filename} handlePatientSelect={props.handlePatientSelect} />
             )) }
         </div>
     );

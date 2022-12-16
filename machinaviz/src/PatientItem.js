@@ -3,6 +3,10 @@ import './PatientItem.css';
 
 var patient_clickable = true;
 
+export function setPatientClickable(pc) {
+    patient_clickable = pc;
+}
+
 function PatientItem(props) {
 
     var panelId = 'patient-panel-' + props.name;
@@ -14,11 +18,13 @@ function PatientItem(props) {
         if (curr_class === 'PatientItem-panel' && patient_clickable) {
             document.getElementById(panelId).setAttribute('class', 'PatientItem-panel-clicked');
             document.getElementById(identId).setAttribute('class', 'PatientItem-ident-clicked');
-            patient_clickable = false;
+            setPatientClickable(false);
+            props.handlePatientSelect(props.name)
         } else if (curr_class === 'PatientItem-panel-clicked') {
             document.getElementById(panelId).setAttribute('class', 'PatientItem-panel');
             document.getElementById(identId).setAttribute('class', 'PatientItem-ident');
-            patient_clickable = true;
+            setPatientClickable(true);
+            props.handlePatientSelect("");
         }
     }
 
