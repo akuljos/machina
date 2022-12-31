@@ -32,9 +32,9 @@ function App() {
               <PatientMenu subdirectory={subdirectory} handlePatientSelect={handlePatient} />
           </div>
           <div className="box-cell tree-box" >
-            <h1>Patient Report</h1>
-            <ClonalTree subdirectory={subdirectory} patient={patient} />
-            <Migration subdirectory={subdirectory} patient={patient} />
+            { subdirectory !== "" && patient != "" && <h1>Patient Report</h1> }
+            { subdirectory !== "" && patient != "" &&<ClonalTree subdirectory={subdirectory} patient={patient} /> }
+            { subdirectory !== "" && patient !== "" && <Migration subdirectory={subdirectory} patient={patient} /> }
           </div>
         </div> 
     </div>

@@ -32,8 +32,8 @@ async function getPMH(subdirectory, patient, pmh) {
 }
 
 function Migration(props) {
-    const [pmhs, setPMHs] = useState([]);
-    const [pmh, setPMH] = useState("");
+    var built_nodes = [];
+    var built_relationships = [];
 
     const [graph, setGraph] = useState({
         nodes: [],
@@ -58,54 +58,64 @@ function Migration(props) {
             var { nodes, edges } = event;
         }
     };
-    var built_nodes = [];
-    var built_relationships = [];
 
-    if (props.subdirectory !== "" && props.patient !== "") {
+    const [pmhs, setPMHs] = useState([]);
+    const [pmh, setPMH] = useState("");
+
+    useEffect(() => {
         getPMHs(props.subdirectory, props.patient)
             .then((data) => setPMHs(data.message));
+    });
 
-        getPMH(props.subdirectory, props.patient, pmh)
-            .then((data) => { 
-                // Extract nodes and labels
-                for (var i = 0; i < data.nodes.length; i++) {
-                    built_nodes.push({ id: "graph_node_" + data.nodes[i].node, name: data.nodes[i].node, title: data.nodes[i].node, color: colors[data.nodes[i].color] });
-                }
+    useEffect(() => {
+        if (pmh !== "") {
+            getPMH(props.subdirectory, props.patient, pmh)
+                .then((data) => { 
+                    // Extract nodes and labels
+                    for (var i = 0; i < data.nodes.length; i++) {
+                        built_nodes.push({ id: "graph_node_" + data.nodes[i].node, name: data.nodes[i].node, title: data.nodes[i].node, color: colors[data.nodes[i].color] });
+                    }
 
-                // Extract edges
-                for (var i = 0; i < data.relationships.length; i++) {
-                    built_relationships.push({ from: "graph_node_" + data.relationships[i][0], to: "graph_node_" + data.relationships[i][1] })
-                }
+                    // Extract edges
+                    for (var i = 0; i < data.relationships.length; i++) {
+                        built_relationships.push({ from: "graph_node_" + data.relationships[i][0], to: "graph_node_" + data.relationships[i][1] })
+                    }
+                })
+                // Set states
+                .then(() => setGraph({
+                    nodes: built_nodes,
+                    edges: built_relationships
+                }));
+        } else {
+            setGraph({
+                nodes: [],
+                edges: []
             })
-            // Set states
-            .then(() => setGraph({
-                nodes: built_nodes,
-                edges: built_relationships
-            }));
-
-        // Event handler for labelfile selection
-        let handleChange = (e) => {
-            setPMH(e.target.value)
         }
-        console.log(pmh);
-        return (
-            <div className="phylogeny">
-                <h3>Migration Graph</h3>
-                <span>Select PMH File: <select onChange={handleChange}> 
-                    <option value="⬇️ Select labeling ⬇️"><p>-- Select PMH -- </p></option>
-                    {pmhs.map((pmh) => <option value={pmh}>{pmh}</option>)}
-                </select></span>
-                <Graph
-                    key={uuidv4()}
-                    graph={graph}
-                    options={options}
-                    events={events}
-                    getNetwork={network => {
-                    //  if you want access to vis.js network api you can set the state in a parent component using this property
-                    }}
-                />
-            </div>);
+    }, [pmh]);
+
+    // Event handler for labelfile selection
+    let handleChange = (e) => {
+        setPMH(e.target.value)
     }
+
+    return (
+        <div className="phylogeny">
+            <h3>Migration Graph</h3>
+            <span>Select PMH File: <select onChange={handleChange}> 
+                <option key="default" value="">-- Select PMH --</option>
+                {pmhs.map((pmh) => <option key={pmh} value={pmh}>{pmh}</option>)}
+            </select></span>
+            <Graph
+                key={uuidv4()}
+                graph={graph}
+                options={options}
+                events={events}
+                getNetwork={network => {
+                //  if you want access to vis.js network api you can set the state in a parent component using this property
+                }}
+            />
+        </div>);
 }
 
 export default Migration;
